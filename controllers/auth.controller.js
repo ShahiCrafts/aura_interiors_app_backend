@@ -58,7 +58,6 @@ const registerUser = async (req, res, next) => {
       return res.status(200).json({
         message:
           "Account already exists but is not verified. A new code has been sent.",
-        nextStep: "verify",
       });
     }
 
@@ -81,7 +80,6 @@ const registerUser = async (req, res, next) => {
     res.status(200).json({
       message:
         "User registered successfully. Please check your email to verify your account.",
-      nextStep: "verify",
     });
   } catch (error) {
     next(error);
@@ -175,7 +173,6 @@ const loginUser = async (req, res, next) => {
     if (!user.isVerified) {
       return res.status(400).json({
         message: "Account not verfied. Please verify before login.",
-        nextStep: "verify",
       });
     }
 
